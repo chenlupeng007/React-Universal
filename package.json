@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "webpack-dev-server --mode development --open",
     "dev-prod": "NODE_ENV=production webpack-dev-server --mode production --open",
-    "build": "webpack --mode production"
+    "build": "NODE_ENV=production webpack --mode production"
   },
   "license": "MIT",
   "devDependencies": {
@@ -21,8 +21,10 @@
     "sass-loader": "^7.1.0",
     "style-loader": "^0.23.1",
     "webpack": "^4.29.0",
+    "webpack-bundle-analyzer": "^3.0.3",
     "webpack-cli": "^3.2.1",
-    "webpack-dev-server": "^3.1.14"
+    "webpack-dev-server": "^3.1.14",
+    "webpack-notifier": "^1.7.0"
   },
   "dependencies": {
     "react": "^16.7.0",
