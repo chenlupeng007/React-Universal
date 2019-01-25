@@ -1,6 +1,29 @@
-import React from 'react'
+import React, { Component }from 'react'
+import { hot } from 'react-hot-loader/root'
 import styles from './Home.scss';
 
-const Home = () => <h1 className={styles.Home}>Updated Home</h1>;
+class Home extends Component {
+  constructor(props){
+    super(props)
+    this.state = {
+      value: 0
+    }
 
-export default Home;
+    this.handleClick = this.handleClick.bind(this)
+  }
+
+  handleClick() {
+    this.setState({value: this.state.value + 1})
+  }
+
+  render(){
+    return (
+      <h1>
+        Home
+        <button onClick={this.handleClick}>{this.state.value}</button>
+      </h1>
+    )
+  }
+}
+
+export default hot(Home)
