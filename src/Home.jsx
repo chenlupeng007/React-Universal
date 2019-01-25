@@ -19,7 +19,7 @@ class Home extends Component {
   render(){
     return (
       <h1>
-        Home
+        Home Page
         <button onClick={this.handleClick}>{this.state.value}</button>
       </h1>
     )
