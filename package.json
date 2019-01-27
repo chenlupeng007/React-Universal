@@ -3,21 +3,26 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "dev": "webpack-dev-server --mode development --open --hot",
-    "dev-prod": "NODE_ENV=production webpack-dev-server --mode production --open",
-    "build": "NODE_ENV=production webpack --mode production"
+    "start": "yarn run clean && NODE_ENV=development nodemon src/server --watch src/server --exec babel-node",
+    "start-prod": "yarn run clean && yarn run build && NODE_ENV=production babel-node src/server",
+    "build": "NODE_ENV=production webpack",
+    "clean": "rm -rf public/"
   },
   "license": "MIT",
   "devDependencies": {
     "@babel/core": "^7.2.2",
+    "@babel/node": "^7.2.2",
     "@babel/preset-env": "^7.3.1",
     "@babel/preset-react": "^7.0.0",
     "@babel/register": "^7.0.0",
     "babel-loader": "^8.0.5",
+    "compression-webpack-plugin": "^2.0.0",
     "css-loader": "^2.1.0",
     "html-webpack-plugin": "^3.2.0",
+    "koa-webpack": "^5.2.1",
     "mini-css-extract-plugin": "^0.5.0",
     "node-sass": "^4.11.0",
+    "nodemon": "^1.18.9",
     "react-hot-loader": "^4.6.3",
     "sass-loader": "^7.1.0",
     "style-loader": "^0.23.1",
@@ -28,7 +33,12 @@
     "webpack-notifier": "^1.7.0"
   },
   "dependencies": {
+    "koa": "^2.6.2",
+    "koa-static": "^5.0.0",
     "react": "^16.7.0",
-    "react-dom": "^16.7.0"
+    "react-dom": "^16.7.0",
+    "react-redux": "^6.0.0",
+    "react-router-dom": "^4.3.1",
+    "redux": "^4.0.1"
   }
 }
