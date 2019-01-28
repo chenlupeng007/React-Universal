@@ -25,6 +25,7 @@ const clientRender = () => {
   return async (ctx, next) => {
     const htmlTemplate = html();
     ctx.body = htmlTemplate;
+
     await next();
   }
 }

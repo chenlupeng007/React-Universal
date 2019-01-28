@@ -21,13 +21,13 @@ if (isProduction) {
     new MiniCssExtractPlugin({
       filename: './css/[name].css'
     }),
-    new CompressionPlugin({
-      filename: '[path].gz[query]',
-      algorithm: 'gzip',
-      test: /\.js$/,
-      threshold: 10240,
-      minRatio: 0.8
-    })
+    // new CompressionPlugin({
+    //   filename: '[path].gz[query]',
+    //   algorithm: 'gzip',
+    //   test: /\.js$/,
+    //   threshold: 10240,
+    //   minRatio: 0.8
+    // })
   );
 } else {
   plugins.push(

@@ -1,9 +1,12 @@
 import Koa from 'koa'
 import path from 'path'
 import staticMidleware from 'koa-static'
+import Router from 'koa-router'
 import koaWebpack from 'koa-webpack'
-import config from '../../webpack.config.babel'
-import clientRender from './render/clientRender'
+import config from '@webpack'
+// import clientRender from './render/clientRender'
+import serverRender from './render/serverRender'
+
 
 const isProduction = process.env.NODE_ENV === 'production';
 
@@ -20,7 +23,9 @@ if(!isProduction) {
   ))
 }
 
-app.use(clientRender())
+const router = new Router();
+router.get('/*', serverRender())
+app.use(router.routes()).use(router.allowedMethods())
 
 app.listen(3000)
 
