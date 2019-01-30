@@ -29,17 +29,19 @@
     "webpack": "^4.29.0",
     "webpack-bundle-analyzer": "^3.0.3",
     "webpack-cli": "^3.2.1",
-    "webpack-dev-server": "^3.1.14",
     "webpack-notifier": "^1.7.0"
   },
   "dependencies": {
+    "axios": "^0.18.0",
     "koa": "^2.6.2",
     "koa-router": "^7.4.0",
     "koa-static": "^5.0.0",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
     "react-redux": "^6.0.0",
+    "react-router-config": "^4.4.0-beta.6",
     "react-router-dom": "^4.3.1",
-    "redux": "^4.0.1"
+    "redux": "^4.0.1",
+    "redux-thunk": "^2.3.0"
   }
 }

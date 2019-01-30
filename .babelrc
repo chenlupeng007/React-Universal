@@ -10,8 +10,8 @@
       "alias": {
         "@client": "./src/client/",
         "@server": "./src/server/",
+        "@common": "./src/common/",
         "@components": "./src/client/components",
-        "@reducers": "./src/client/reducers",
         "@webpack": "./webpack.config.babel.js"
       }
     }]

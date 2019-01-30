@@ -1,22 +1,46 @@
 import React from 'react';
+import { StaticRouter } from 'react-router-dom';
+import { Provider } from 'react-redux';
 import { renderToString } from 'react-dom/server';
-import { StaticRouter } from 'react-router-dom'
-import Routes from '../../share/Routes'
+import { matchRoutes } from 'react-router-config'
+
+import { Routes, routes } from '@common/Routes'
+import configureStore from '@common/store'
 
 const isProduction = process.env.NODE_ENV === 'production';
 
-const content = (path) => {
-  return renderToString(
-    <StaticRouter location={path} context={{}}>
-      { Routes }
-    </StaticRouter>
-  )
+const getInitialState = async (path) => {
+  const store = configureStore();
+
+  const promises = []
+
+  const matchedRoutes = matchRoutes(routes, path)
+
+  matchedRoutes.forEach((item) => {
+    if (item.route.loadData) {
+      promises.push(item.route.loadData(store))
+    }
+  })
+
+  await Promise.all(promises);
+
+  return store
 }
 
-const html = (path) => {
+const html = async (path) => {
   const link = isProduction ? `<link rel="stylesheet" href="css/main.css" />` : '';
 
-  const bodyContent = content(path)
+  const store = await getInitialState(path)
+
+  const App = () => (
+    <Provider store={store}>
+      <StaticRouter location={path} context={{}}>
+        { Routes }
+      </StaticRouter>
+    </Provider>
+  )
+
+  const content = renderToString(<App />)
 
   return `
     <!DOCTYPE html>
@@ -27,8 +51,11 @@ const html = (path) => {
         ${link}
       </head>
       <body>
-        <div id="root">${bodyContent}</div>
+        <div id="root">${content}</div>
 
+        <script>
+          window.defaultState = ${JSON.stringify(store.getState())};
+        </script>
         <script src="vendor.js"></script>
         <script src="main.js"></script>
       </body>

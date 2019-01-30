@@ -8,7 +8,7 @@ const serverRender = () => {
       await next()
     }
     else {
-      const htmlTemplate = html(ctx.path);
+      const htmlTemplate =   await html(ctx.path);
       ctx.body = htmlTemplate;
     }
   }

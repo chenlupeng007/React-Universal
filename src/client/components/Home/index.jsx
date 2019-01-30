@@ -1,31 +1,16 @@
 import React, { Component }from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 
-// const Home = () => (
-  // <div>
-  //   <h1>Home Page</h1>
-  //   <ul>
-  //     <li><Link to='/'>Home</Link></li>
-  //     <li><Link to='/about'>About</Link></li>
-  //   </ul>
-  // </div>
-// )
+import { getTodoList } from './actions'
 
 class Home extends Component {
   constructor(props) {
     super(props)
-
-    this.state = {
-      value: 0
-    }
-
-    this.handleClick = this.handleClick.bind(this)
   }
 
-  handleClick() {
-    this.setState({
-      value: this.state.value + 1
-    })
+  componentDidMount() {
+    this.props.getTodoList()
   }
 
   render() {
@@ -36,12 +21,28 @@ class Home extends Component {
           <li><Link to='/'>Home</Link></li>
           <li><Link to='/about'>About</Link></li>
         </ul>
-        <button onClick={this.handleClick}>
-          {this.state.value}
-        </button>
+        <ul>
+          {
+            this.props.list.map(item => {
+              return <li key={item.id}>{item.title}</li>
+            })
+          }
+        </ul>
       </div>
     )
   }
+
+  static loadData(store) {
+    return store.dispatch(getTodoList())
+  }
 }
 
-export default Home
+const mapStateToProps = state => ({
+  list: state.todo.List
+})
+
+const mapDispatchToProps = dispatch => ({
+  getTodoList: ()=> dispatch(getTodoList())
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home);
