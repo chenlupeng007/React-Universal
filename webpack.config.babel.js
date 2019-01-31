@@ -1,21 +1,7 @@
-import {
-  devtool,
-  entry,
-  mode,
-  module,
-  optimization,
-  output,
-  plugins,
-  resolve
-} from './webpack/configuration';
+import clientConfig from './webpack/webpack.config.client';
+import serverConfig from './webpack/webpack.config.server';
 
-export default {
-  devtool,
-  entry,
-  mode,
-  module,
-  plugins,
-  optimization,
-  output,
-  resolve
-};
+export default [
+  clientConfig,
+  serverConfig
+];

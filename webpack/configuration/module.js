@@ -1,8 +1,14 @@
 import MiniCssExtractPlugin from 'mini-css-extract-plugin'
 
-const isProduction = process.env.NODE_ENV === 'production';
+const isDevelopment = process.env.NODE_ENV !== 'production';
 
-export default {
+const loader = type => {
+  if (type == 'server') return 'isomorphic-style-loader';
+  else if(isDevelopment) return 'style-loader';
+  else return MiniCssExtractPlugin.loader
+}
+
+export default type => ({
   rules: [
     {
       test: /\.(js|jsx)$/,
@@ -13,14 +19,14 @@ export default {
       test: /\.scss$/,
       use: [
         {
-          loader: isProduction ? MiniCssExtractPlugin.loader : 'style-loader'
+          loader: loader(type)
         },
         {
           loader: 'css-loader',
           options: {
             modules: true,
             localIdentName: '[name]_[local]_[hash:base64]',
-            sourceMap: !isProduction
+            sourceMap: isDevelopment
           }
         },
         {
@@ -29,4 +35,4 @@ export default {
       ]
     }
   ]
-};
+});

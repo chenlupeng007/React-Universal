@@ -28,7 +28,8 @@ const getInitialState = async (path) => {
 }
 
 const html = async (path) => {
-  const link = isProduction ? `<link rel="stylesheet" href="css/main.css" />` : '';
+  const Path = isProduction ? 'app/': '';
+  const link = isProduction ? `<link rel="stylesheet" href="${Path}css/main.css" />` : '';
 
   const store = await getInitialState(path)
 
@@ -56,8 +57,8 @@ const html = async (path) => {
         <script>
           window.defaultState = ${JSON.stringify(store.getState())};
         </script>
-        <script src="vendor.js"></script>
-        <script src="main.js"></script>
+        <script src="${Path}vendor.js"></script>
+        <script src="${Path}main.js"></script>
       </body>
     </html>
   `;

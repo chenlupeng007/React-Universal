@@ -1,24 +1,3 @@
-Skip to content
-Why GitHub?
-Enterprise
-Explore
-Marketplace
-Pricing
-
-Search
-
-Sign in
-Sign up
-0 0 0 chenlupeng007/MusicList
- Code  Issues 0  Pull requests 0  Projects 0  Insights
-Join GitHub today
-GitHub is home to over 28 million developers working together to host and review code, manage projects, and build software together.
-
-MusicList/.gitignore
-d357b02  on Nov 4, 2018
-@chenlupeng007 chenlupeng007 README
-
-62 lines (44 sloc)  914 Bytes
 # Logs
 logs
 *.log
@@ -96,3 +75,4 @@ Press h to open a hovercard with more details.
 
 #
 dist/
+public/app/

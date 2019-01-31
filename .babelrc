@@ -12,7 +12,8 @@
         "@server": "./src/server/",
         "@common": "./src/common/",
         "@components": "./src/client/components",
-        "@webpack": "./webpack.config.babel.js"
+        "@webpack": "./webpack.config.babel.js",
+        "@serverRender": "./dist/server.js"
       }
     }]
   ]

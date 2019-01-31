@@ -1,3 +1,9 @@
+import path from 'path';
+
 export default {
-  extensions: ['.js', '.jsx']
+  extensions: ['.js', '.jsx'],
+  modules: [
+    'node_modules',
+    path.resolve(__dirname, '../../src')
+  ]
 }
