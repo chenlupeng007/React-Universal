@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 
-import todo from '@components/Home/reducer';
+import todo from '@components/About/reducer';
 
 const composedReducer = combineReducers({
   todo

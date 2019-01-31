@@ -1,48 +1,34 @@
-import React, { Component }from 'react';
-import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
-
-import { getTodoList } from './actions'
+import React, { Component } from 'react';
+import styles from './Home.scss'
+import withStyle from '@hco/withStyle'
 
 class Home extends Component {
   constructor(props) {
     super(props)
+
+    this.state = {
+      value: 0
+    }
+
+    this.handleClick = this.handleClick.bind(this)
   }
 
-  componentDidMount() {
-    this.props.getTodoList()
+  handleClick() {
+    this.setState({
+      value: this.state.value + 1
+    })
   }
 
   render() {
     return (
       <div>
-        <h1>Home Page</h1>
-        <ul>
-          <li><Link to='/'>Home</Link></li>
-          <li><Link to='/about'>About</Link></li>
-        </ul>
-        <ul>
-          {
-            this.props.list.map(item => {
-              return <li key={item.id}>{item.title}</li>
-            })
-          }
-        </ul>
+        <h1 className = { styles.Home }>
+          Home Page
+        </h1>
+        <button onClick = { this.handleClick }>{ this.state.value }</button>
       </div>
     )
   }
-
-  static loadData(store) {
-    return store.dispatch(getTodoList())
-  }
 }
 
-const mapStateToProps = state => ({
-  list: state.todo.List
-})
-
-const mapDispatchToProps = dispatch => ({
-  getTodoList: ()=> dispatch(getTodoList())
-})
-
-export default connect(mapStateToProps, mapDispatchToProps)(Home);
+export default withStyle(Home, styles)

@@ -32,10 +32,13 @@ const html = async (path) => {
   const link = isProduction ? `<link rel="stylesheet" href="${Path}css/main.css" />` : '';
 
   const store = await getInitialState(path)
+  const context = {
+    css: []
+  }
 
   const App = () => (
     <Provider store={store}>
-      <StaticRouter location={path} context={{}}>
+      <StaticRouter location={path} context={ context }>
         { Routes }
       </StaticRouter>
     </Provider>
@@ -43,12 +46,17 @@ const html = async (path) => {
 
   const content = renderToString(<App />)
 
+  const cssString = context.css.length > 0 ?context.css.join('\n') : ''
+
   return `
     <!DOCTYPE html>
     <html>
       <head>
         <meta charset="utf-8">
         <title>App Name</title>
+        <style>
+          ${ cssString }
+        </style>
         ${link}
       </head>
       <body>
