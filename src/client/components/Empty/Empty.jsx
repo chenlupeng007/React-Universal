@@ -1,7 +1,8 @@
 import React from 'react'
 import { renderRoutes } from 'react-router-config'
+
 import { withStyles } from '@hoc';
-import antStyles from '@antd'
+import commonStyle from 'antd/lib/style/index.css';
 
 const Empty = (props) => (
   <React.Fragment>
@@ -9,4 +10,4 @@ const Empty = (props) => (
   </React.Fragment>
 )
 
-export default withStyles(Empty, ...antStyles)
+export default withStyles(Empty, commonStyle)

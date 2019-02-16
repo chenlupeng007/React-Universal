@@ -32,7 +32,6 @@ const html = async (path) => {
   const link = isProduction ? `<link rel="stylesheet" href="${Path}css/main.css" />` : '';
   const linkVendor = isProduction ? `<link rel="stylesheet" href="${Path}css/vendor.css" />` : '';
 
-
   const store = await getInitialState(path)
   const context = {
     css: []
@@ -50,7 +49,7 @@ const html = async (path) => {
 
   const cssString = context.css.length > 0 ? context.css.join('\n') : ''
 
-  const css = cssString.replace(/[\r\n]/g, '')
+  const css = cssString.replace(/[\n]/g, '\n\t\t')
 
   return `
     <!DOCTYPE html>

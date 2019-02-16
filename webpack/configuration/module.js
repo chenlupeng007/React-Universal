@@ -50,5 +50,16 @@ export default type => ({
         }
       ]
     },
+    {
+      test: /\.(png|jpg|jpeg|gif|eot|svg|ttf|woff)$/,
+      use: [
+        {
+          loader: 'url-loader',
+          options: {
+            limit: 8192,
+          },
+        },
+      ],
+    },
   ]
 });

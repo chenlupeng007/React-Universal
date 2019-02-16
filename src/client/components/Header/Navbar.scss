@@ -1,0 +1,32 @@
+.nav {
+  display: flex;
+  justify-content: flex-end;
+
+  li {
+    text-align: center;
+    margin-left: 20px;
+    list-style: none;
+
+    a {
+      color: #999;
+
+      &:hover {
+        color: #31BBAC;
+      }
+    }
+
+    dl {
+      background: #fff;
+      display: none;
+      z-index: 999;
+
+      dd {
+        line-height: 35px;
+
+        &:hover {
+          color: #31BBAC;
+        }
+      }
+    }
+  }
+}
